@@ -1,0 +1,46 @@
+/* Layers are declared in index.html */
+@import 'modern-normalize/modern-normalize.css' layer(reset);
+
+@layer base {
+  :root {
+    --text: oklch(51.35% 0.0296 305.45);
+    --text-h: oklch(12.97% 0.0171 298.93);
+    --bg: oklch(100% 0 0);
+    --border: oklch(92.05% 0.0042 301.42);
+    --accent: oklch(60.81% 0.25 354);
+    --accent-bg: oklch(60.81% 0.25 354 / 10%);
+    --accent-border: oklch(60.81% 0.25 354 / 50%);
+    --shadow: oklch(0% 0 0 / 10%) 0 10px 15px -3px, oklch(0% 0 0 / 5%) 0 4px 6px -2px;
+
+    --sans: system-ui, 'Segoe UI', Roboto, sans-serif;
+    --heading: system-ui, 'Segoe UI', Roboto, sans-serif;
+    --mono: ui-monospace, Consolas, monospace;
+  }
+
+  @media (prefers-color-scheme: dark) {
+    :root {
+      --text: oklch(71.37% 0.0192 261.32);
+      --text-h: oklch(96.7% 0.0029 264.54);
+      --bg: oklch(20.63% 0.012 277.83);
+      --border: oklch(31.13% 0.0181 276.38);
+      --accent: oklch(72.17% 0.1767 354);
+      --accent-bg: oklch(72.17% 0.1767 354 / 15%);
+      --accent-border: oklch(72.17% 0.1767 354 / 50%);
+      --shadow: oklch(0% 0 0 / 40%) 0 10px 15px -3px, oklch(0% 0 0 / 25%) 0 4px 6px -2px;
+    }
+  }
+
+  html {
+    color-scheme: light dark;
+
+    font-synthesis: none;
+    text-rendering: optimizeLegibility;
+    -webkit-font-smoothing: antialiased;
+    -moz-osx-font-smoothing: grayscale;
+  }
+
+  body {
+    color: var(--text);
+    background: var(--bg);
+  }
+}

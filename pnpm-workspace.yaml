@@ -1,0 +1,9 @@
+minimumReleaseAge: 10080 # 7 days
+supportedArchitectures:
+  os:
+    - current
+    - linux
+  cpu:
+    - current
+    - x64
+    - arm64

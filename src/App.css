@@ -1,2 +1,46 @@
+@keyframes start-to-end-of-offset-distance {
+  from {
+    offset-distance: 0%;
+  }
+  to {
+    offset-distance: 100%;
+  }
+}
+
 @layer components {
+  .main {
+    padding-block-start: var(--size-indicator);
+    min-block-size: 10000px;
+    text-align: center;
+  }
+
+  .path {
+    position: fixed;
+    inset: calc(var(--size-indicator) / 2 + 5px);
+    color: var(--border);
+    border: 5px solid currentColor;
+    border-radius: 25px;
+  }
+
+  .indicator {
+    position: absolute;
+    inline-size: var(--size-indicator);
+
+    offset-path: border-box;
+    offset-rotate: auto;
+    offset-distance: 0%;
+    aspect-ratio: 1;
+
+    background: var(--accent);
+    /* transition-property: offset-distance; */
+    /* transition-duration: 5s; */
+
+    @media (prefers-reduced-motion: no-preference) {
+      animation-name: start-to-end-of-offset-distance;
+      /* https://easingwizard.com/ */
+      animation-timing-function: cubic-bezier(0.44, 0, 0.56, 1);
+      /* animation-timing-function: linear; */
+      animation-timeline: scroll(root);
+    }
+  }
 }

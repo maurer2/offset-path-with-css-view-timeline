@@ -2,8 +2,17 @@ import './App.css';
 
 export function App() {
   return (
-    <main>
-      <h1>App</h1>
-    </main>
+    <>
+      <main className="main">
+        <h1>Page title</h1>
+      </main>
+
+      <div
+        className="path"
+        aria-hidden
+      >
+        <div className="indicator"></div>
+      </div>
+    </>
   );
 }

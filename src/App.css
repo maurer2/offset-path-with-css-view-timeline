@@ -1,9 +1,22 @@
-@keyframes start-to-end-of-offset-distance {
+@property --progress {
+  syntax: '<number>';
+  inherits: true;
+  initial-value: 0;
+}
+
+@keyframes scroll-progress {
   from {
-    offset-distance: 0%;
+    --progress: 0;
   }
   to {
-    offset-distance: 100%;
+    --progress: 1;
+  }
+}
+
+@layer base {
+  :root {
+    --path-width: 4px;
+    --path-width-offset: calc(var(--path-width) / 2);
   }
 }
 
@@ -14,33 +27,54 @@
     text-align: center;
   }
 
-  .path {
+  .overlay {
     position: fixed;
-    inset: calc(var(--size-indicator) / 2 + 5px);
-    color: var(--border);
-    border: 5px solid currentColor;
-    border-radius: 25px;
+    inset: calc(var(--size-indicator) / 2 + 1rem);
+    pointer-events: none;
+    border-radius: 25px; /* not visible - controls indicator orientation in corners, visible border-radius controlled by rx, ry on svg tag */
+
+    animation-name: scroll-progress;
+    animation-timing-function: linear;
+    animation-timeline: scroll(root);
+  }
+
+  .track {
+    position: absolute;
+    inset: 0;
+    place-self: stretch;
+
+    & > rect {
+      x: var(--path-width-offset);
+      y: var(--path-width-offset);
+      inline-size: calc(100% - var(--path-width-offset) * 2);
+      block-size: calc(100% - var(--path-width-offset) * 2);
+
+      rx: 25; /* visible border radius, not used by indicator to calculate orientation */
+      ry: 25; /* visible border radius, not used by indicator to calculate orientation */
+
+      stroke: var(--border);
+      stroke-width: var(--path-width);
+      stroke-dasharray: 100;
+
+      @media (prefers-reduced-motion: no-preference) {
+        stroke-dashoffset: calc(100 - var(--progress) * 100);
+      }
+    }
   }
 
   .indicator {
     position: absolute;
     inline-size: var(--size-indicator);
+    aspect-ratio: 1;
 
     offset-path: border-box;
     offset-rotate: auto;
     offset-distance: 0%;
-    aspect-ratio: 1;
 
     background: var(--accent);
-    /* transition-property: offset-distance; */
-    /* transition-duration: 5s; */
 
     @media (prefers-reduced-motion: no-preference) {
-      animation-name: start-to-end-of-offset-distance;
-      /* https://easingwizard.com/ */
-      animation-timing-function: cubic-bezier(0.44, 0, 0.56, 1);
-      /* animation-timing-function: linear; */
-      animation-timeline: scroll(root);
+      offset-distance: calc(var(--progress) * 100%);
     }
   }
 }

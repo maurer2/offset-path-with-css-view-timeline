@@ -8,9 +8,16 @@ export function App() {
       </main>
 
       <div
-        className="path"
-        aria-hidden
+        className="overlay"
+        aria-hidden="true"
       >
+        <svg className="track">
+          <rect
+            pathLength="100"
+            fill="none"
+          />
+        </svg>
+
         <div className="indicator"></div>
       </div>
     </>

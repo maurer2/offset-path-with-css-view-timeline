@@ -1,4 +1,5 @@
 import './App.css';
+import CatSVG from '#assets/cat.svg?react';
 
 export function App() {
   return (
@@ -18,7 +19,9 @@ export function App() {
           />
         </svg>
 
-        <div className="indicator"></div>
+        <div className="indicator">
+          <CatSVG className="image" />
+        </div>
       </div>
     </>
   );

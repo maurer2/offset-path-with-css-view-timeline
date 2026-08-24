@@ -66,15 +66,20 @@
     position: absolute;
     inline-size: var(--size-indicator);
     aspect-ratio: 1;
+    align-content: center;
 
     offset-path: border-box;
     offset-rotate: auto;
     offset-distance: 0%;
 
-    background: var(--accent);
+    color: var(--accent);
 
     @media (prefers-reduced-motion: no-preference) {
       offset-distance: calc(var(--progress) * 100%);
+    }
+
+    & > .image {
+      display: block;
     }
   }
 }

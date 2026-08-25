@@ -17,6 +17,12 @@
   :root {
     --path-width: 4px;
     --path-width-offset: calc(var(--path-width) / 2);
+    --size-indicator: 4rem;
+  }
+
+  html {
+    container-type: scroll-state;
+    container-name: page;
   }
 }
 
@@ -74,12 +80,60 @@
 
     color: var(--accent);
 
+    transform: scale(1);
+    transition-property: transform;
+    transition-duration: 1s;
+    /* https://easingwizard.com/#0a2l4v1000x42h */
+    transition-timing-function: linear(
+      0,
+      0.058 6%,
+      0.109 9.8%,
+      0.174 13%,
+      0.262 15.9%,
+      0.536 21.5%,
+      0.997 27.7%,
+      0.527 34.1%,
+      0.428 36.4%,
+      0.396 38.5%,
+      0.431 40.6%,
+      0.532 42.7%,
+      0.996 48%,
+      0.677 51.9%,
+      0.607 53.4%,
+      0.582 54.9%,
+      0.605 56.4%,
+      0.673 57.9%,
+      0.999 62%,
+      0.786 65%,
+      0.74 66.2%,
+      0.724 67.4%,
+      0.739 68.6%,
+      0.782 69.8%,
+      0.999 73.4%,
+      0.878 75.7%,
+      0.837 77.8%,
+      0.87 79.9%,
+      1 83.2%,
+      0.942 85.1%,
+      0.923 86.9%,
+      0.936 88.5%,
+      1 92%,
+      0.981 94.5%,
+      1
+    );
+
     @media (prefers-reduced-motion: no-preference) {
       offset-distance: calc(var(--progress) * 100%);
     }
 
-    & > .image {
-      display: block;
+    /* can't scroll further up */
+    @container page not scroll-state(scrollable: top) {
+      transform: scale(0.5);
+    }
+
+    /* can't scroll further down */
+    @container page not scroll-state(scrollable: bottom) {
+      transform: scale(0.5);
     }
   }
 }

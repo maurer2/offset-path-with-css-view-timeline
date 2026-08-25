@@ -1,6 +1,12 @@
 /* Layers are declared in index.html */
 @import 'modern-normalize/modern-normalize.css' layer(reset);
 
+@layer reset {
+  svg {
+    display: block;
+  }
+}
+
 @layer base {
   :root {
     --text: oklch(71.37% 0.0192 261.32);
@@ -14,8 +20,6 @@
     --sans: system-ui, 'Segoe UI', Roboto, sans-serif;
     --heading: system-ui, 'Segoe UI', Roboto, sans-serif;
     --mono: ui-monospace, Consolas, monospace;
-
-    --size-indicator: 4rem;
   }
 
   html {

@@ -1,4 +1,10 @@
 minimumReleaseAge: 10080 # 7 days
+
+minimumReleaseAgeExclude:
+  - 'oxc-transform-react'
+  - '@oxc-transform-react/*'
+  - '@vitejs/plugin-react'
+
 supportedArchitectures:
   os:
     - current

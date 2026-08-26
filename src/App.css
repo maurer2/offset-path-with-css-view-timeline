@@ -34,10 +34,14 @@
   }
 
   .overlay {
+    --distance-to-edge-of-screen: calc(var(--size-indicator) / 2 + 1rem);
+
     position: fixed;
-    inset: calc(var(--size-indicator) / 2 + 1rem);
-    pointer-events: none;
+    inset-inline: var(--distance-to-edge-of-screen);
+    inset-block-start: var(--distance-to-edge-of-screen);
+    block-size: calc(100svb - var(--distance-to-edge-of-screen) * 2);
     border-radius: 25px; /* not visible - controls indicator orientation in corners, visible border-radius controlled by rx, ry on svg tag */
+    pointer-events: none;
 
     animation-name: scroll-progress;
     animation-timing-function: linear;

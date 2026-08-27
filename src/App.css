@@ -24,6 +24,16 @@
     container-type: scroll-state;
     container-name: page;
   }
+
+  h1,
+  h2,
+  h3,
+  h4,
+  h5,
+  h6 {
+    text-box-trim: trim-both;
+    text-box-edge: cap alphabetic;
+  }
 }
 
 @layer components {
@@ -31,6 +41,28 @@
     padding-block-start: var(--size-indicator);
     min-block-size: 10000px;
     text-align: center;
+  }
+
+  .chapters {
+    display: flex;
+    padding-inline: 1rem;
+    flex-direction: column;
+    gap: 1rem;
+  }
+
+  .chapter {
+    padding-inline: inherit;
+    inline-size: fit-content;
+    max-content-sizing: shrink-to-fit; /* https://github.com/explainers-by-googlers/css-shrink-to-fit */
+    background: var(--accent-bg);
+  }
+
+  .chapter-header {
+    inline-size: fit-content;
+  }
+
+  .chapter-content {
+    inline-size: fit-content;
   }
 
   .overlay {

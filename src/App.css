@@ -83,7 +83,13 @@
   .track {
     position: absolute;
     inset: 0;
-    place-self: stretch;
+    /* place-self: stretch; */
+    /* Safari doesn't honour place-self: stretch on replaced absolute positioned elements like svg or img */
+    size: 100%;
+    @supports not (size: 100%) {
+      inline-size: 100%;
+      block-size: 100%;
+    }
 
     & > rect {
       x: var(--path-width-offset);
@@ -91,8 +97,8 @@
       inline-size: calc(100% - var(--path-width-offset) * 2);
       block-size: calc(100% - var(--path-width-offset) * 2);
 
-      rx: 25; /* visible border radius, not used by indicator to calculate orientation */
-      ry: 25; /* visible border radius, not used by indicator to calculate orientation */
+      rx: 25px; /* visible border radius, not used by indicator to calculate orientation */
+      ry: 25px; /* visible border radius, not used by indicator to calculate orientation */
 
       stroke: var(--border);
       stroke-width: var(--path-width);
